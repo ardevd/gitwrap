@@ -17,18 +17,18 @@ namespace GitWrap
             bashInfo.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
             @"System32\bash.exe");
 
-            // Loop through args and pass them to git
+            // Loop through args and pass them to git executable
             String argsString = "-c \" git";
             for (int i = 0; i < args.Length; i++)
             {
                 // Translate directory structure.
+                // Note: Currently only handles C: drive (hardcoded value)
                 String argstr = args[i].Replace("C:\\", "/mnt/c/");
                 // Convert Windows path to Linux style paths
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
             }
 
-            //System.Console.WriteLine(argsString);
             argsString += "> /tmp/gitwrap_output\"";
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
@@ -42,6 +42,7 @@ namespace GitWrap
             };
             proc.Start();
             proc.WaitForExit();
+
             string outputFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                 @"AppData\Local\lxss\rootfs\tmp\gitwrap_output");
             if (System.IO.File.Exists(outputFilePath))
