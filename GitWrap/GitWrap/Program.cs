@@ -10,6 +10,7 @@ namespace GitWrap
 {
     class Program
     {
+        private static Random random = new Random();
         static void Main(string[] args)
         {
             // Bash.exe
@@ -28,8 +29,8 @@ namespace GitWrap
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
             }
-
-            argsString += "> /tmp/gitwrap_output && chmod 777 /tmp/gitwrap_output \"";
+            string oFilename = "gitwrap_output_" + RandomString(6);
+            argsString += "> /tmp/" + oFilename + "\"";
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
             bashInfo.RedirectStandardOutput = false;
@@ -44,14 +45,22 @@ namespace GitWrap
             proc.WaitForExit();
 
             string outputFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                @"AppData\Local\lxss\rootfs\tmp\gitwrap_output");
+                @"AppData\Local\lxss\rootfs\tmp\"+oFilename);
             if (System.IO.File.Exists(outputFilePath))
             {
+                File.SetAttributes(outputFilePath, FileAttributes.Normal);
                 string text = System.IO.File.ReadAllText(outputFilePath);
                 text.Replace("\r\n", "\n");
                 System.Console.WriteLine(text);
                 System.IO.File.Delete(outputFilePath);
             }
+        }
+
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }
