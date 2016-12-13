@@ -29,8 +29,8 @@ namespace GitWrap
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
             }
-            string oFilename = "gitwrap_output_" + RandomString(6);
-            argsString += "> /tmp/" + oFilename + "\"";
+            string oFilename = "gitwrap_output_" + RandomString(10);
+            argsString += "> /tmp/" + oFilename + " && chmod 777 /tmp/" + oFilename + "\"";
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
             bashInfo.RedirectStandardOutput = false;
@@ -48,7 +48,7 @@ namespace GitWrap
                 @"AppData\Local\lxss\rootfs\tmp\"+oFilename);
             if (System.IO.File.Exists(outputFilePath))
             {
-                File.SetAttributes(outputFilePath, FileAttributes.Normal);
+                //File.SetAttributes(outputFilePath, FileAttributes.Normal);
                 string text = System.IO.File.ReadAllText(outputFilePath);
                 text.Replace("\r\n", "\n");
                 System.Console.WriteLine(text);
