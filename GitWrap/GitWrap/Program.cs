@@ -29,7 +29,7 @@ namespace GitWrap
                 argsString += " " + argstr;
             }
 
-            argsString += "> /tmp/gitwrap_output\"";
+            argsString += "> /tmp/gitwrap_output && chmod 777 /tmp/gitwrap_output \"";
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
             bashInfo.RedirectStandardOutput = false;
