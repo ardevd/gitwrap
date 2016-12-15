@@ -29,7 +29,7 @@ namespace GitWrap
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
             }
-            string oFilename = "gitwrap_output_" + RandomString(10);
+            string oFilename = "gitwrap_output_" + RandomString(12);
             argsString += "> /tmp/" + oFilename + " && chmod 777 /tmp/" + oFilename + "\"";
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
