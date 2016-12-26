@@ -1,6 +1,8 @@
 # GitWrap
 Windows Wrapper for Linux git executable.
 
+Windows Subsystem for Linux is pretty awesome, but managing two separate git environment is not. So, here is a quick hack for that.
+
 GitWrap is currently a Proof Of Concept solution and is in no way complete or reliable. It has been tested with Android Studio and seems to work pretty well when set up correctly.
 
 ## Requirements
