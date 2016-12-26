@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GitWrap
@@ -23,8 +24,14 @@ namespace GitWrap
             for (int i = 0; i < args.Length; i++)
             {
                 // Translate directory structure.
-                // Note: Currently only handles C: drive (hardcoded value)
-                String argstr = args[i].Replace("C:\\", "/mnt/c/");
+                // Use regex to translate drive letters.
+                string pattern = "(\\D):";
+                String argstr = args[i];
+                foreach (Match match in Regex.Matches(args[i], pattern, RegexOptions.IgnoreCase))
+                {
+                    argstr = Regex.Replace(args[i], pattern, "/mnt/" + match.Groups[1] + "/");
+                }
+               
                 // Convert Windows path to Linux style paths
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
