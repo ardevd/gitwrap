@@ -25,11 +25,12 @@ namespace GitWrap
             {
                 // Translate directory structure.
                 // Use regex to translate drive letters.
-                string pattern = "(\\D):";
+                string pattern = @"(\D):\\";
                 String argstr = args[i];
                 foreach (Match match in Regex.Matches(args[i], pattern, RegexOptions.IgnoreCase))
                 {
-                    argstr = Regex.Replace(args[i], pattern, "/mnt/" + match.Groups[1] + "/");
+                    string driveLetter = match.Groups[1].ToString();
+                    argstr = Regex.Replace(args[i], pattern, "/mnt/" + driveLetter.ToLower() + "/");
                 }
                
                 // Convert Windows path to Linux style paths
