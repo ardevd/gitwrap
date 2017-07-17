@@ -12,6 +12,7 @@ namespace GitWrap
     class Program
     {
         private static Random random = new Random();
+
         static void Main(string[] args)
         {
             // Bash.exe
@@ -61,16 +62,20 @@ namespace GitWrap
 
         static void CaptureOutput(object sender, DataReceivedEventArgs e)
         {
-            if (e.Data != null && e.Data.Length > 1)
+            if (e.Data != null)
             {
-                String outputString = e.Data.Replace("\n", Environment.NewLine);
-                Console.WriteLine(outputString);
+                String outputString = e.Data + Environment.NewLine;
+                Console.Write(outputString);
             }
         }
 
         static void CaptureError(object sender, DataReceivedEventArgs e)
         {
-            Console.WriteLine(e.Data);
+            if (e.Data != null)
+            {
+                String outputString = e.Data + Environment.NewLine;
+                Console.Write(outputString);
+            }
         }
     }
 }
