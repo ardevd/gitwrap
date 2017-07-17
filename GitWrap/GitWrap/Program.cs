@@ -61,7 +61,11 @@ namespace GitWrap
 
         static void CaptureOutput(object sender, DataReceivedEventArgs e)
         {
-            Console.WriteLine(e.Data);
+            if (e.Data != null && e.Data.Length > 1)
+            {
+                String outputString = e.Data.Replace("\n", Environment.NewLine);
+                Console.WriteLine(outputString);
+            }
         }
 
         static void CaptureError(object sender, DataReceivedEventArgs e)
