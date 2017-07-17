@@ -12,6 +12,7 @@ namespace GitWrap
     class Program
     {
         private static Random random = new Random();
+
         static void Main(string[] args)
         {
             // Bash.exe
@@ -20,7 +21,7 @@ namespace GitWrap
             @"System32\bash.exe");
 
             // Loop through args and pass them to git executable
-            String argsString = "-c \" git";
+            String argsString = "-c \"git";
             for (int i = 0; i < args.Length; i++)
             {
                 // Translate directory structure.
@@ -37,38 +38,44 @@ namespace GitWrap
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
             }
-            string oFilename = "gitwrap_output_" + RandomString(12);
-            argsString += "> /tmp/" + oFilename + " && chmod 777 /tmp/" + oFilename + "\"";
+
+            argsString += "\"";
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
-            bashInfo.RedirectStandardOutput = false;
-            bashInfo.RedirectStandardError = false;
+            bashInfo.RedirectStandardOutput = true;
+            bashInfo.RedirectStandardError = true;
             bashInfo.CreateNoWindow = true;
 
             var proc = new Process
             {
                 StartInfo = bashInfo
             };
-            proc.Start();
-            proc.WaitForExit();
 
-            string outputFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                @"AppData\Local\lxss\rootfs\tmp\"+oFilename);
-            if (System.IO.File.Exists(outputFilePath))
+            proc.OutputDataReceived += CaptureOutput;
+            proc.ErrorDataReceived += CaptureError;
+
+            proc.Start();
+            proc.BeginOutputReadLine();
+            proc.BeginErrorReadLine();
+            proc.WaitForExit();
+        }
+
+        static void CaptureOutput(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data != null)
             {
-                //File.SetAttributes(outputFilePath, FileAttributes.Normal);
-                string text = System.IO.File.ReadAllText(outputFilePath);
-                text.Replace("\r\n", "\n");
-                System.Console.WriteLine(text);
-                System.IO.File.Delete(outputFilePath);
+                String outputString = e.Data + Environment.NewLine;
+                Console.Write(outputString);
             }
         }
 
-        public static string RandomString(int length)
+        static void CaptureError(object sender, DataReceivedEventArgs e)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            if (e.Data != null)
+            {
+                String outputString = e.Data + Environment.NewLine;
+                Console.Write(outputString);
+            }
         }
     }
 }
