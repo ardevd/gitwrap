@@ -11,9 +11,9 @@ GitWrap is currently a Proof Of Concept solution and is in no way complete or re
 - Supports x64 variant of Windows only. 
 
 ## Installation
-Download the latest GitWrap release, extract and save the executable anywhere you want. Then configure your IDE's git executable path and make it point to GitWrap.exe. It should now be using git from your Linux Subsystem on Windows 10.
+Download the latest GitWrap release and place the executable anywhere you want. GitWrap is completely portable. Then configure your IDE's git executable path and make it point to GitWrap.exe. It should now be using git from your Linux Subsystem on Windows 10.
 
-It should work with other IDE's but I've only tested and verified functionality with Android Studio.
+It should work with other IDE's that allow you to specify the path to the git executable but I've only tested and verified functionality with Android Studio.
 
 ## Known Issues
 - Using GitWrap manually as a command line tool is a bit cumbersome. Commiting files is pretty much impossible since GitWrap cant interface with external editors for commit messages etc. You should use GitWrap with IDE's and other applications that integrate with git or interact with git directly through WSL.
