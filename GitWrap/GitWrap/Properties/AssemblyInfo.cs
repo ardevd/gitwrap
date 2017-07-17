@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GitWrap")]
 [assembly: AssemblyDescription("Windows wrapper for Linux git")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Aegis Dynamics")]
+[assembly: AssemblyCompany("ardevd")]
 [assembly: AssemblyProduct("GitWrap")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
