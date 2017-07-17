@@ -39,7 +39,9 @@ namespace GitWrap
                 argsString += " " + argstr;
             }
 
+            // Append quotation to close of the argument supplied to bash.exe
             argsString += "\"";
+
             bashInfo.Arguments = argsString;
             bashInfo.UseShellExecute = false;
             bashInfo.RedirectStandardOutput = true;
