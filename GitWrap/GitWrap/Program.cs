@@ -15,10 +15,19 @@ namespace GitWrap
 
         static void Main(string[] args)
         {
-            // Bash.exe
+            executeGitWithArgs(getBashPath(), args);   
+        }
+
+        static Boolean executeGitWithArgs(String bashPath, string[] args)
+        {
+            if (!File.Exists(bashPath))
+            {
+                Console.Write("[-] Error: Bash.exe not found.");
+                return false;
+            }
+
             ProcessStartInfo bashInfo = new ProcessStartInfo();
-            bashInfo.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
-            @"System32\bash.exe");
+            bashInfo.FileName = bashPath;
 
             // Loop through args and pass them to git executable
             String argsString = "-c \"git";
@@ -33,7 +42,7 @@ namespace GitWrap
                     string driveLetter = match.Groups[1].ToString();
                     argstr = Regex.Replace(args[i], pattern, "/mnt/" + driveLetter.ToLower() + "/");
                 }
-               
+
                 // Convert Windows path to Linux style paths
                 argstr = argstr.Replace("\\", "/");
                 argsString += " " + argstr;
@@ -60,6 +69,7 @@ namespace GitWrap
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
             proc.WaitForExit();
+            return true;
         }
 
         static void CaptureOutput(object sender, DataReceivedEventArgs e)
@@ -78,6 +88,12 @@ namespace GitWrap
                 String outputString = e.Data + Environment.NewLine;
                 Console.Write(outputString);
             }
+        }
+
+        static String getBashPath()
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
+            @"System32\bash.exe");
         }
     }
 }
