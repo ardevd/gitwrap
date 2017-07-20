@@ -3,7 +3,7 @@ Windows Wrapper for Linux git executable.
 
 Windows Subsystem for Linux is pretty awesome, but managing two separate git environment is not, especially if you use SSH keys. So, here is a little workaround that lets you call git from the WSL environment through a Windows executable.
 
-GitWrap is currently a Proof Of Concept solution and is in no way complete or reliable. It has been tested with Android Studio and seems to work pretty well when set up correctly.
+GitWrap is currently basically a proof-of-concept solution and can't be considered complete or reliable. It has been tested with Android Studio and seems to work pretty well when set up correctly.
 
 ## Requirements
 - Windows Subsystem for Linux must be installed. 
