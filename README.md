@@ -1,5 +1,5 @@
 # GitWrap
-Windows Wrapper for Linux git executable.
+GitWrap is a Windows Wrapper for the Linux git executable.
 
 Windows Subsystem for Linux is pretty awesome, but managing two separate git environment is not, especially if you use SSH keys. So, here is a little workaround that lets you call git from the WSL environment through a Windows executable.
 
