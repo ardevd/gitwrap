@@ -11,7 +11,6 @@ namespace GitWrap
 {
     class Program
     {
-        private static Random random = new Random();
         private static int outputLines = 0;
 
         static void Main(string[] args)
