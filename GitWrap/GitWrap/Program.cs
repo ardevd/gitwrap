@@ -12,6 +12,7 @@ namespace GitWrap
     class Program
     {
         private static Random random = new Random();
+        private static int outputLines = 0;
 
         static void Main(string[] args)
         {
@@ -74,26 +75,31 @@ namespace GitWrap
 
         static void CaptureOutput(object sender, DataReceivedEventArgs e)
         {
-            if (e.Data != null)
-            {
-                String outputString = e.Data + Environment.NewLine;
-                Console.Write(outputString);
-            }
+            printOutputData(e.Data);
         }
 
         static void CaptureError(object sender, DataReceivedEventArgs e)
         {
-            if (e.Data != null)
-            {
-                String outputString = e.Data + Environment.NewLine;
-                Console.Write(outputString);
-            }
+            printOutputData(e.Data);
         }
 
         static String getBashPath()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
             @"System32\bash.exe");
+        }
+
+        static void printOutputData(String data)
+        {
+            if (data != null)
+            {
+                if (outputLines > 0)
+                {
+                    Console.Write(Environment.NewLine);
+                }
+                Console.Write(data);
+                outputLines++;
+            }
         }
     }
 }
