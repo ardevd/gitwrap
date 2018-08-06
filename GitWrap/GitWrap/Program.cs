@@ -45,6 +45,8 @@ namespace GitWrap
 
                 // Convert Windows path to Linux style paths
                 argstr = argstr.Replace("\\", "/");
+                // Escape any whitespaces
+                argstr = argstr.Replace(" ", "\\ ");
                 argsString += " " + argstr;
             }
 
