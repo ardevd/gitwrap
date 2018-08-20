@@ -8,9 +8,10 @@ GitWrap is experimental and can't be considered complete or reliable. It has bee
 NOTE: Please read through the list of known issues.
 
 ## Requirements
-- Windows Subsystem for Linux must be installed. 
+- Windows Subsystem for Linux must be installed.
 - Git should be installed in the Linux environment (WSL).
 - Supports x64 variant of Windows only.
+- To avoid most known issues, make sure your Windows 10 installation is fully up to date
 
 ## Installation
 Download the latest GitWrap release and place the executable anywhere you want. GitWrap is completely portable. Then configure your IDE's git executable path and make it point to GitWrap.exe. It should now be using git from your Linux Subsystem on Windows 10.
