@@ -30,7 +30,9 @@ namespace GitWrap
             bashInfo.FileName = bashPath;
 
             // Loop through args and pass them to git executable
-            String argsString = "-c \"git";
+            StringBuilder argsBld = new StringBuilder();
+            argsBld.Append("-c \"git");
+
             for (int i = 0; i < args.Length; i++)
             {
                 // Translate directory structure.
@@ -47,13 +49,13 @@ namespace GitWrap
                 argstr = argstr.Replace("\\", "/");
                 // Escape any whitespaces
                 argstr = argstr.Replace(" ", "\\ ");
-                argsString += " " + argstr;
+                argsBld.Append(" " + argstr);
             }
 
             // Append quotation to close of the argument supplied to bash.exe
-            argsString += "\"";
+            argsBld.Append("\"");
 
-            bashInfo.Arguments = argsString;
+            bashInfo.Arguments = argsBld.ToString();
             bashInfo.UseShellExecute = false;
             bashInfo.RedirectStandardOutput = true;
             bashInfo.RedirectStandardError = true;
