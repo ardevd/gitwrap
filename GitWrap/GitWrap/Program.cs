@@ -18,7 +18,7 @@ namespace GitWrap
         {
             if (!File.Exists(bashPath))
             {
-                Console.Write("[-] Error: Bash.exe not found.");
+                Console.Write("[-] Error: wsl.exe not found.");
                 return;
             }
 
@@ -27,15 +27,12 @@ namespace GitWrap
 
             // Loop through args and pass them to git executable
             StringBuilder argsBld = new StringBuilder();
-            argsBld.Append("-c \"git");
+            argsBld.Append("git");
 
             for (int i = 0; i < args.Length; i++)
             {
                 argsBld.Append(" " + PathConverter.convertPathFromWindowsToLinux(args[i]));
             }
-
-            // Append quotation to close of the argument supplied to bash.exe
-            argsBld.Append("\"");
 
             bashInfo.Arguments = argsBld.ToString();
             bashInfo.UseShellExecute = false;
@@ -70,7 +67,7 @@ namespace GitWrap
         static String getBashPath()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
-            @"System32\bash.exe");
+            @"System32\wsl.exe");
         }
 
         static void printOutputData(String data)
