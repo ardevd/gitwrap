@@ -18,12 +18,12 @@ namespace GitWrap
             executeGitWithArgs(getBashPath(), args);   
         }
 
-        static Boolean executeGitWithArgs(String bashPath, string[] args)
+        static void executeGitWithArgs(String bashPath, string[] args)
         {
             if (!File.Exists(bashPath))
             {
                 Console.Write("[-] Error: Bash.exe not found.");
-                return false;
+                return;
             }
 
             ProcessStartInfo bashInfo = new ProcessStartInfo();
@@ -71,7 +71,6 @@ namespace GitWrap
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
             proc.WaitForExit();
-            return true;
         }
 
         static void CaptureOutput(object sender, DataReceivedEventArgs e)
