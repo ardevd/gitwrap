@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace GitWrap
 {
@@ -35,21 +31,7 @@ namespace GitWrap
 
             for (int i = 0; i < args.Length; i++)
             {
-                // Translate directory structure.
-                // Use regex to translate drive letters.
-                string pattern = @"(\D):\\";
-                String argstr = args[i];
-                foreach (Match match in Regex.Matches(args[i], pattern, RegexOptions.IgnoreCase))
-                {
-                    string driveLetter = match.Groups[1].ToString();
-                    argstr = Regex.Replace(args[i], pattern, "/mnt/" + driveLetter.ToLower() + "/");
-                }
-
-                // Convert Windows path to Linux style paths
-                argstr = argstr.Replace("\\", "/");
-                // Escape any whitespaces
-                argstr = argstr.Replace(" ", "\\ ");
-                argsBld.Append(" " + argstr);
+                argsBld.Append(" " + PathConverter.convertPathFromWindowsToLinux(args[i]));
             }
 
             // Append quotation to close of the argument supplied to bash.exe
