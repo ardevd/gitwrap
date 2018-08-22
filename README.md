@@ -20,8 +20,10 @@ It should work with other IDE's that allow you to specify the path to the git ex
 
 To manually verify that GitWrap is working, open up a command prompt and navigate to the directory containing GitWrap.exe
 
-`GitWrap.exe --version
-git version 1.9.1`
+```
+GitWrap.exe --version
+git version 1.9.1
+```
 
 If you get the expected response from the --version command you should be good to go.
 
