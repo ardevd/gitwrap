@@ -1,0 +1,2 @@
+language: csharp # Language
+solution: GitWrap.sln # Solution name
