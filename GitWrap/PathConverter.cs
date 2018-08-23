@@ -11,7 +11,7 @@ namespace GitWrap
             // Translate directory structure.
             // Use regex to translate drive letters.
             string pattern = @"(\D):\\";
-            String argstr = path;
+            string argstr = path;
             foreach (Match match in Regex.Matches(path, pattern, RegexOptions.IgnoreCase))
             {
                 string driveLetter = match.Groups[1].ToString();
