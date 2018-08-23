@@ -22,6 +22,9 @@ namespace GitWrap
             argstr = argstr.Replace("\\", "/");
             // Escape any whitespaces
             argstr = argstr.Replace(" ", "\\ ");
+            // Escape parenthesis
+            argstr = argstr.Replace("(", "\\(");
+            argstr = argstr.Replace(")", "\\)");
             return argstr;
         }
     }
