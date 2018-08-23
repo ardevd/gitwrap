@@ -11,19 +11,19 @@ namespace GitWrap
 
         static void Main(string[] args)
         {
-            executeGitWithArgs(getBashPath(), args);   
+            executeGitWithArgs(getWslPath(), args);   
         }
 
-        static void executeGitWithArgs(String bashPath, string[] args)
+        static void executeGitWithArgs(String wslPath, string[] args)
         {
-            if (!File.Exists(bashPath))
+            if (!File.Exists(wslPath))
             {
                 Console.Write("[-] Error: wsl.exe not found.");
                 return;
             }
 
             ProcessStartInfo bashInfo = new ProcessStartInfo();
-            bashInfo.FileName = bashPath;
+            bashInfo.FileName = wslPath;
 
             // Loop through args and pass them to git executable
             StringBuilder argsBld = new StringBuilder();
@@ -64,7 +64,7 @@ namespace GitWrap
             printOutputData(e.Data);
         }
 
-        static String getBashPath()
+        static String getWslPath()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
             @"System32\wsl.exe");
