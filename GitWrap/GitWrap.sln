@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWrap", "GitWrap\GitWrap.csproj", "{5020A057-E361-443B-80D1-0A28CF403439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWrapTests", "GitWrapTests\GitWrapTests.csproj", "{7CCBFDB7-98FF-46EE-8DE3-4320211E1BA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5020A057-E361-443B-80D1-0A28CF403439}.Debug|Any CPU.ActiveCfg = Release|x64
-		{5020A057-E361-443B-80D1-0A28CF403439}.Debug|Any CPU.Build.0 = Release|x64
-		{5020A057-E361-443B-80D1-0A28CF403439}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5020A057-E361-443B-80D1-0A28CF403439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5020A057-E361-443B-80D1-0A28CF403439}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{5020A057-E361-443B-80D1-0A28CF403439}.Debug|Any CPU.Build.0 = Debug|x64
+		{5020A057-E361-443B-80D1-0A28CF403439}.Release|Any CPU.ActiveCfg = Release|x64
+		{5020A057-E361-443B-80D1-0A28CF403439}.Release|Any CPU.Build.0 = Release|x64
+		{7CCBFDB7-98FF-46EE-8DE3-4320211E1BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CCBFDB7-98FF-46EE-8DE3-4320211E1BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CCBFDB7-98FF-46EE-8DE3-4320211E1BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CCBFDB7-98FF-46EE-8DE3-4320211E1BA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D84CBC04-7E66-4C7B-A43E-3216868EAA8D}
 	EndGlobalSection
 EndGlobal
