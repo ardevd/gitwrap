@@ -78,7 +78,8 @@ namespace GitWrap
                 {
                     Console.Write(Environment.NewLine);
                 }
-                Console.Write(data);
+                // Print output from git, converting WSL paths to Windows equivalents.
+                Console.Write(PathConverter.convertPathFromLinuxToWindows(data));
                 outputLines++;
             }
         }
