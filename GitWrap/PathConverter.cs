@@ -27,5 +27,22 @@ namespace GitWrap
             argstr = argstr.Replace(")", "\\)");
             return argstr;
         }
+
+       public static string convertPathFromLinuxToWindows(String path) 
+        {
+            string drivePathPattern = @"/mnt/(\D):/";
+            string argstr = path;
+
+            foreach (Match match in Regex.Matches(path, drivePathPattern, RegexOptions.None))
+            {
+                string driveLetter = match.Groups[1].ToString();
+                argstr = Regex.Replace(path, drivePathPattern, driveLetter.ToUpper() + ":\\\\");
+            }
+
+            // Convert Linux style path separators to Windows style equivalent
+            argstr = argstr.Replace("/", "\\");
+            return argstr;
+        }
+
     }
 }
