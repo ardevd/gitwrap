@@ -37,9 +37,10 @@ namespace GitWrap
             {
                 string driveLetter = match.Groups[1].ToString();
                 argstr = Regex.Replace(path, drivePathPattern, driveLetter.ToUpper() + ":\\");
+                // Convert Linux style path separators to Windows style equivalent
+                argstr = argstr.Replace("/", "\\");
             }
 
-            // Convert Linux style path separators to Windows style equivalent
             argstr = argstr.Replace("/", "\\");
             return argstr;
         }
