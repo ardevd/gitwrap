@@ -15,7 +15,7 @@ namespace GitWrap
             foreach (Match match in Regex.Matches(path, pattern, RegexOptions.IgnoreCase))
             {
                 string driveLetter = match.Groups[1].ToString();
-                argstr = Regex.Replace(path, pattern, "/mnt/" + driveLetter.ToLower() + "/");
+                argstr = Regex.Replace(path, pattern, Properties.Settings.Default.wslpath + driveLetter.ToLower() + "/");
             }
 
             // Convert Windows path to Linux style paths
@@ -30,7 +30,7 @@ namespace GitWrap
 
        public static string convertPathFromLinuxToWindows(String path) 
         {
-            string drivePathPattern = @"/mnt/(\D)/";
+            string drivePathPattern = String.Format(@"{0}(\D)/", Properties.Settings.Default.wslpath);
             string argstr = path;
 
             foreach (Match match in Regex.Matches(path, drivePathPattern, RegexOptions.None))
