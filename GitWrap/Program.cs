@@ -9,11 +9,20 @@ namespace GitWrap
     {
         private static int outputLines = 0;
 
-        static void Main(string[] args)
+ 	static void Main(string[] args)
         {
-            executeGitWithArgs(getWslPath(), args);   
+            if (args[0] == "--setWslPath" && args.Length == 2)
+            {
+                Properties.Settings.Default.wslpath = args[1];
+                Console.Write("[*] wslPath set to: " + args[1]);
+            } else if (args[0] == "--getWslPath") {
+                Console.Write("[*] Current wslPath: " + Properties.Settings.Default.wslpath);
+            }
+            else
+            {
+                executeGitWithArgs(getWslPath(), args);
+            }
         }
-
         static void executeGitWithArgs(String wslPath, string[] args)
         {
             if (!File.Exists(wslPath))
