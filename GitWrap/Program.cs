@@ -11,18 +11,18 @@ namespace GitWrap
 
  	static void Main(string[] args)
         {
-            if (args[0] == "--setWslPath" && args.Length == 2)
-            {
-                Properties.Settings.Default.wslpath = args[1];
-		Properties.Settings.Default.Save();
-                Console.Write("[*] wslPath set to: " + args[1]);
-            } else if (args[0] == "--getWslPath") {
-                Console.Write("[*] Current wslPath: " + Properties.Settings.Default.wslpath);
-            }
-            else
-            {
-                executeGitWithArgs(getWslPath(), args);
-            }
+          if (args.Length > 0 && args[0] == "--setWslPath" && args.Length == 2)
+          {
+              Properties.Settings.Default.wslpath = args[1];
+              Properties.Settings.Default.Save();
+              Console.Write("[*] wslPath set to: " + args[1]);
+          } else if (args.Length > 0 && args[0] == "--getWslPath") {
+              Console.Write("[*] Current wslPath: " + Properties.Settings.Default.wslpath);
+          }
+          else
+          {
+              executeGitWithArgs(getWslPath(), args);
+          }
         }
         static void executeGitWithArgs(String wslPath, string[] args)
         {
