@@ -14,6 +14,7 @@ namespace GitWrap
             if (args[0] == "--setWslPath" && args.Length == 2)
             {
                 Properties.Settings.Default.wslpath = args[1];
+		Properties.Settings.Default.Save();
                 Console.Write("[*] wslPath set to: " + args[1]);
             } else if (args[0] == "--getWslPath") {
                 Console.Write("[*] Current wslPath: " + Properties.Settings.Default.wslpath);
