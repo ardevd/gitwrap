@@ -5,7 +5,7 @@ namespace GitWrap
 {
     public class PathConverter
     {
-
+        // Convert Windows style paths submitted to GitWrap to their Linux style equivalent
         public static string convertPathFromWindowsToLinux(String path)
         {
             // Translate directory structure.
@@ -28,8 +28,12 @@ namespace GitWrap
             return argstr;
         }
 
+       // Convert output paths from WSL git to Windows style equivalent.
+       // For now we only convert forward slashes to backslashes if our regex pattern for
+       // absolute paths get a match. If not we will end up converting urls, and other stuff too.
        public static string convertPathFromLinuxToWindows(String path) 
         {
+            bool foundDrivePath = false;
             string drivePathPattern = String.Format(@"{0}(\D)/", Properties.Settings.Default.wslpath);
             string argstr = path;
 
@@ -39,9 +43,13 @@ namespace GitWrap
                 argstr = Regex.Replace(path, drivePathPattern, driveLetter.ToUpper() + ":\\");
                 // Convert Linux style path separators to Windows style equivalent
                 argstr = argstr.Replace("/", "\\");
+                foundDrivePath = true;
             }
 
-            argstr = argstr.Replace("/", "\\");
+            if (foundDrivePath)
+            {
+                argstr = argstr.Replace("/", "\\");
+            }
             return argstr;
         }
 
